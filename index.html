@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>In Control Data Scrape</title>
+	<script type="text/javascript" src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+	<script type="text/javascript" src='heatmap.min.js'></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="ZebraPlot.css">
+	<script type="text/javascript" src='ZebraPlot.js'></script>
+</head>
+<body>
+
+<div id='modal' class='modal'>
+	<div class='modal-content'>
+		
+		<div class='tab'>
+			<button class='tablinks active' id='Heatmap' onclick='openTab(event, "Heatmap")'>HEATMAP</button>
+			<button class='tablinks' id='AutoPath' onclick='openTab(event, "AutoPath")'>AUTO PATH</button>
+			<button class='tablinks' id='Playback' onclick='openTab(event, "Playback")'>PLAYBACK</button>
+			<span id='close' class="button">&times;</span>
+		</div>
+		
+		<div class='tabcontent' align='center'>
+			<select id='event'></select>
+			<div style='margin: 5px auto;'>
+				<div style='display: inline-block;'>
+					<div id='team' style='display: flex; height: 22px; line-height: 22px;'>
+						<span style='margin-right: 3px;'>Team: </span>
+						<select id='team'></select>
+					</div>
+					<div id='match' style='display: none; height: 22px; line-height: 22px;'>
+						<span>Match: </span>
+						<select id='match'></select>
+					</div>
+				</div>
+				<button id='go' class='style'>GO</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div id='main' style='position: relative; display: inline-block;'>
+	<div id='menu'>
+		<button class='style menu'>MENU</button>
+		<span class='loading'>Loading...</span>
+		<fieldset id='key' style='display:none;'>
+			<div id='blue1' class='key-box'>
+				<div class='color-box' style='background-color: #202bfa;'></div>
+				<span>Blue 1: </span>
+				<span class='team-key'></span>
+			</div>
+			<div id='blue2' class='key-box'>
+				<div class='color-box' style='background-color: #6a71fc;'></div>
+				<span>Blue 2: </span>
+				<span class='team-key'></span>
+			</div>
+			<div id='blue3' class='key-box'>
+				<div class='color-box' style='background-color: #17b2ff;'></div>
+				<span>Blue 3: </span>
+				<span class='team-key'></span>
+			</div>
+			<div id='red1' class='key-box'>
+				<div class='color-box' style='background-color: #fa202f;'></div>
+				<span>Red 1: </span>
+				<span class='team-key'></span>
+			</div>
+			<div id='red2' class='key-box'>
+				<div class='color-box' style='background-color: #fc6a74;'></div>
+				<span>Red 2: </span>
+				<span class='team-key'></span>
+			</div>
+			<div id='red3' class='key-box'>
+				<div class='color-box' style='background-color: #ff6017;'></div>
+				<span>Red 3: </span>
+				<span class='team-key'></span>
+			</div>
+		</fieldset>
+	</div>
+	<div id='content-wrapper' style='position: relative;'>
+		<img id='image' src='field23.png'>
+	</div>
+	<div id='control' class='controls'>
+		<i id='back' class="material-icons">skip_previous</i>
+		<i id='play' class="material-icons">play_arrow</i>
+		<i id='pause' class="material-icons" style='display: none;'>pause</i>
+		<i id='fastforward' class="material-icons">fast_forward</i>
+		<span id='time-current' class='time'>--:--</span>
+		<div class='slidecontainer'>
+			<input id='time-slider' class='slider' type="range" min='0' max='1' step='1' value='0'>
+		</div>
+		<span id='time-length' class='time'>--:--</span>
+	</div>
+</div>
+
+</body>
+</html>
